@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Snake Moderno</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Pantalla de inicio -->
+    <section id="start-screen" class="panel visible">
+      <h1 class="title">Snake Moderno</h1>
+
+      <div class="size-selector">
+        <h2>Elige el tamaño del tablero</h2>
+        <div class="size-grid">
+          <label class="size-option">
+            <input type="radio" name="board-size" value="small" checked />
+            <span>Pequeño</span>
+          </label>
+          <label class="size-option">
+            <input type="radio" name="board-size" value="medium" />
+            <span>Mediano</span>
+          </label>
+          <label class="size-option">
+            <input type="radio" name="board-size" value="large" />
+            <span>Grande</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-play" class="btn primary">Jugar</button>
+        <button id="btn-instructions" class="btn">Instrucciones</button>
+      </div>
+    </section>
+
+    <!-- Panel del juego -->
+    <section id="game-panel" class="panel">
+      <header class="hud">
+        <div class="score">
+          <span>Puntos:</span>
+          <strong id="score-value">0</strong>
+        </div>
+        <div class="controls-top">
+          <button id="btn-start" class="btn primary">Iniciar</button>
+          <button id="btn-restart" class="btn">Reiniciar</button>
+          <button id="btn-exit" class="btn danger">Salir</button>
+        </div>
+      </header>
+
+      <div class="board-wrapper">
+        <canvas id="board" width="600" height="600" aria-label="Tablero del juego"></canvas>
+      </div>
+
+      <!-- Controles táctiles visibles en móviles -->
+      <div class="touch-controls" aria-label="Controles táctiles">
+        <div class="touch-row">
+          <button id="touch-up" class="touch-btn">↑</button>
+        </div>
+        <div class="touch-row">
+          <button id="touch-left" class="touch-btn">←</button>
+          <button id="touch-right" class="touch-btn">→</button>
+        </div>
+        <div class="touch-row">
+          <button id="touch-down" class="touch-btn">↓</button>
+        </div>
+        <p class="touch-hint">También puedes deslizar para mover la serpiente.</p>
+      </div>
+    </section>
+
+    <!-- Modal de instrucciones -->
+    <div id="instructions-modal" class="modal">
+      <div class="modal-content">
+        <h2>Cómo jugar</h2>
+        <ul class="instructions-list">
+          <li><strong>Movimiento:</strong> PC: flechas ↑ ↓ ← → (la página no se desplazará). Móvil: botones o gestos de deslizamiento.</li>
+          <li><strong>Objetivo:</strong> Come manzanas para sumar 10 puntos por cada una. Llegar a 200 puntos para ganar.</li>
+          <li><strong>Derrota:</strong> Pierdes si chocas con una pared o con tu propio cuerpo.</li>
+          <li><strong>Tablero:</strong> Puedes elegir tamaño pequeño, mediano o grande antes de empezar.</li>
+        </ul>
+        <div class="modal-actions">
+          <button id="btn-close-instructions" class="btn primary">Entendido</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de victoria -->
+    <div id="win-modal" class="modal">
+      <div class="modal-content">
+        <h2>¡Felicitaciones!</h2>
+        <p>Has alcanzado 200 puntos. ¡Victoria!</p>
+        <div class="modal-actions">
+          <button id="btn-win-restart" class="btn primary">Reiniciar partida</button>
+          <button id="btn-win-exit" class="btn danger">Salir del juego</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de derrota -->
+    <div id="lose-modal" class="modal">
+      <div class="modal-content">
+        <h2>¡Oh no!</h2>
+        <p>Te estrellaste. Pero puedes intentarlo de nuevo.</p>
+        <div class="modal-actions">
+          <button id="btn-lose-restart" class="btn primary">Reiniciar partida</button>
+          <button id="btn-lose-exit" class="btn danger">Salir del juego</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
